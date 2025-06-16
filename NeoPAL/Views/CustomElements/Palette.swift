@@ -28,16 +28,18 @@ struct Palette: View {
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.primaryText)
             )
-            Image(systemName: "heart")
-                .resizable()
-                .renderingMode(.template)
-                .scaledToFit()
-                .frame(height: 36)
-                .foregroundColor(Color.primaryText)
+            if (savable) {
+                Image(systemName: "heart")
+                    .resizable()
+                    .renderingMode(.template)
+                    .scaledToFit()
+                    .frame(height: 36)
+                    .foregroundColor(Color.primaryText)
+            }
         }
     }
 }
 
 #Preview {
-    Palette(paletteColors: [Color.red, Color.orange, Color.yellow, Color.green, Color.blue], savable: true)
+    Palette(paletteColors: [Color.red, Color.orange, Color.yellow, Color.green, Color.blue], savable: false)
 }

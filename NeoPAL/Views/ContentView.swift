@@ -1,72 +1,86 @@
-//import SwiftUI
-//
-//struct ContentView: View {
-//    @State private var selectedTab: Tab = .home
-//    
-//    var body: some View {
-//        ZStack {
-//            // Main content for each tab
-//            Group {
-//                switch selectedTab {
-//                case .home:
-//                    HomeView()
-//                case .search:
-//                    SearchView()
-//                case .profile:
-//                    ProfileView()
-//                }
-//            }
-//            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//            .background(Color.white) // background of main content
-//            
-//            // Custom bottom navbar
-//            VStack {
-//                Spacer()
-//                CustomTabBar(selectedTab: $selectedTab)
-//            }
-//        }
-//        .ignoresSafeArea(.keyboard, edges: .bottom) // avoids keyboard pushing content
-//    }
-//}
-//
-//enum Tab {
-//    case home
-//    case search
-//    case profile
-//}
-//
-//struct CustomTabBar: View {
-//    @Binding var selectedTab: Tab
-//    
-//    var body: some View {
-//        HStack {
-//            tabButton(icon: "house", tab: .home)
-//            Spacer()
-//            tabButton(icon: "magnifyingglass", tab: .search)
-//            Spacer()
-//            tabButton(icon: "person", tab: .profile)
-//        }
-//        .padding(.horizontal, 30)
-//        .padding(.vertical, 12)
-//        .background(Color(.systemGray6))
-//        .cornerRadius(20)
-//        .shadow(radius: 5)
-//        .padding(.horizontal)
-//    }
-//    
-//    private func tabButton(icon: String, tab: Tab) -> some View {
-//        Button(action: {
-//            selectedTab = tab
-//        }) {
-//            Image(systemName: icon)
-//                .font(.system(size: 20, weight: .bold))
-//                .foregroundColor(selectedTab == tab ? .blue : .gray)
-//                .padding()
-//                .background(
-//                    Circle()
-//                        .fill(selectedTab == tab ? Color.blue.opacity(0.1) : Color.clear)
-//                )
-//        }
-//    }
-//}
-//
+import SwiftUI
+
+struct ContentView: View {
+    @State private var selectedTab: Tab = .home
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ZStack {
+                switch selectedTab {
+                case .home:
+                    HomeView()
+                case .generator:
+                    GeneratorView()
+                case .fixer:
+                    ColorFixerView()
+                case .saved:
+                    SavedView()
+                case .account:
+                    AccountView()
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.primaryBackground)
+
+            CustomTabBar(selectedTab: $selectedTab)
+        }
+        .edgesIgnoringSafeArea(.bottom)
+    }
+}
+
+enum Tab {
+    case home
+    case generator
+    case fixer
+    case saved
+    case account
+}
+
+struct CustomTabBar: View {
+    @Binding var selectedTab: Tab
+
+    var body: some View {
+        HStack {
+            tabButton(icon: "house", selectedIcon: "house.fill", tab: .home)
+            Spacer()
+            tabButton(icon: "paintbrush", selectedIcon: "paintbrush.fill", tab: .generator)
+            Spacer()
+            tabButton(icon: "scope", selectedIcon: "scope", tab: .fixer) // no `.fill` version
+            Spacer()
+            tabButton(icon: "bookmark", selectedIcon: "bookmark.fill", tab: .saved)
+            Spacer()
+            tabButton(icon: "person.crop.circle", selectedIcon: "person.crop.circle.fill", tab: .account)
+        }
+        .padding(.horizontal, 32)
+        .padding(.top, 16)
+        .padding(.bottom, 32)
+        .background(Color.primaryBackground)
+        .overlay(
+            Rectangle()
+                .frame(height: 1)
+                .foregroundColor(Color.primaryText),
+            alignment: .top
+        )
+    }
+
+    private func tabButton(icon: String, selectedIcon: String, tab: Tab) -> some View {
+        Button(action: {
+            selectedTab = tab
+        }) {
+            Image(systemName: selectedTab == tab ? selectedIcon : icon)
+                .font(.system(size: 24))
+                .foregroundColor(.primaryText)
+                .padding(12)
+                .background(
+                    Circle()
+                        .fill(selectedTab == tab ? Color.buttonBackground.opacity(0.1) : Color.clear)
+                )
+        }
+    }
+}
+
+#Preview {
+    ContentView()
+}
+
+

@@ -21,8 +21,16 @@ struct SavedView: View {
                 Color.clear
                     .frame(width: 32, height: 1)
             }
-            .padding(.vertical, 36)
-            ScrollView {
+            .padding(.horizontal, 32)
+            .padding(.top, 32)
+            .padding(.bottom, 24)
+            .overlay(
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(Color.primaryText),
+                alignment: .bottom
+            )
+            ScrollView (showsIndicators: false){
                 HStack {
                     Text("Recently Added")
                         .font(.title2)
@@ -30,7 +38,7 @@ struct SavedView: View {
                         .foregroundColor(Color.primaryText)
                     Spacer()
                 }
-                .padding(.bottom, 16)
+                .padding(.vertical, 16)
                 ScrollView(.horizontal, showsIndicators: true) {
                     HStack (spacing: 40) {
                         SquarePalette(paletteColors: [Color.red, Color.yellow, Color.green, Color.blue, Color.purple])
@@ -57,8 +65,8 @@ struct SavedView: View {
                 }
                 
             }
+            .padding(.horizontal, 32)
         }
-        .padding(.horizontal, 32)
         .frame(maxHeight: .infinity, alignment: .top)
     }
 }

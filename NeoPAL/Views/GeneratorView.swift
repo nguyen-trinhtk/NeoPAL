@@ -22,8 +22,15 @@ struct GeneratorView: View {
                 Color.clear
                     .frame(width: 32, height: 1)
             }
-            .padding(.vertical, 36)
-            
+            .padding(.horizontal, 32)
+            .padding(.top, 32)
+            .padding(.bottom, 24)
+            .overlay(
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(Color.primaryText),
+                alignment: .bottom
+            )
             VStack(spacing: 36) {
                 CustomButton(
                     title: "Pick a dominant color",
@@ -43,9 +50,9 @@ struct GeneratorView: View {
                     textColor: Color.primaryText
                 )
             }
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 64)
+            .padding(.vertical, 32)
         }
-        .padding(.horizontal, 32)
         .frame(maxHeight: .infinity, alignment: .top)
     }
 }
