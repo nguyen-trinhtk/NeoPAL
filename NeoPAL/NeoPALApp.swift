@@ -11,7 +11,7 @@ import SwiftUI
 struct NeoPALApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            GeneratorView()
         }
     }
 }
