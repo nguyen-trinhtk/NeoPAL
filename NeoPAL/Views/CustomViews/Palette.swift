@@ -9,22 +9,35 @@ import SwiftUI
 
 struct Palette: View {
     var paletteColors: [Color]
+    var savable: Bool = false
     var body: some View {
-        HStack (spacing: 0) {
-            ForEach(paletteColors, id: \.self) { color in
-                Rectangle()
-                    .fill(color)
-                    .frame(height: 60)
-                    .overlay(
-                        Rectangle()
-                            .stroke(Color.primaryText, lineWidth: 1)
-                )
+        HStack (spacing: 18){
+            HStack (spacing: 0) {
+                ForEach(paletteColors, id: \.self) { color in
+                    Rectangle()
+                        .fill(color)
+                        .frame(height: 60)
+                        .overlay(
+                            Rectangle()
+                                .stroke(Color.primaryText, lineWidth: 1)
+                        )
+                }
             }
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.primaryText)
+            )
+            Image(systemName: "heart")
+                .resizable()
+                .renderingMode(.template)
+                .scaledToFit()
+                .frame(height: 36)
+                .foregroundColor(Color.primaryText)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.primaryText)
-       )
     }
+}
+
+#Preview {
+    Palette(paletteColors: [Color.red, Color.orange, Color.yellow, Color.green, Color.blue], savable: true)
 }

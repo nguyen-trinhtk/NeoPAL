@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct CustomButton: View {
-    var title: String
+    var title: String? = nil
     var subtitle: String? = nil
     var img: Image? = nil
     var padding: CGFloat = 32
@@ -15,37 +15,44 @@ struct CustomButton: View {
     var imgHeight: CGFloat = 100
     var backgroundColor: Color? = Color.buttonBackground
     var textColor: Color? = Color.buttonText
+    var recolor: Bool = false
     var cornerRadius: CGFloat = 24
-//    var onPress: () -> Void = {}
+    var onPress: () -> Void = {}
     
     var body: some View {
-        VStack {
-            if let img = img {
-                img
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: imgHeight)
+        Button(action: onPress) {
+            VStack {
+                if let img = img {
+                    img
+                        .resizable()
+                        .renderingMode(recolor ? .template : nil)
+                        .scaledToFit()
+                        .frame(height: imgHeight)
+                        .foregroundColor(textColor)
+                }
+                if let title = title {
+                    Text(title)
+                        .font(.title2)
+                        .bold()
+                        .foregroundColor(textColor)
+                }
+                if let subtitle = subtitle {
+                    Text(subtitle)
+                        .foregroundColor(textColor)
+                }
             }
-            Text(title)
-                .font(.title2)
-                .bold(true)
-                .foregroundColor(textColor)
-            if let subtitle = subtitle {
-                Text(subtitle)
-                    .foregroundColor(textColor)
-            }
+            .frame(maxWidth: width)
+            .padding(padding)
+            .background(backgroundColor)
+            .cornerRadius(cornerRadius)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color.primaryText)
+            )
         }
-        .frame(maxWidth: width)
-        .padding(padding)
-        .background(backgroundColor)
-        .cornerRadius(cornerRadius)
-        .overlay(
-            RoundedRectangle(cornerRadius: cornerRadius)
-                .stroke(Color.primaryText)
-        )
+        .buttonStyle(PlainButtonStyle())
     }
 }
-
 #Preview {
-    CustomButton(title: "Pick a dominant color", img: Image("photo"))
+    CustomButton(img: Image("photo"), onPress: {print("Button tapped!")})
 }
