@@ -51,7 +51,7 @@ struct PhotoUploader: View {
                 }
             }
             else {
-                CustomButton(title: "Upload Photo", padding: 24, cornerRadius: 32, onPress: {
+                CustomButton(title: "Upload Photo", padding: 20, cornerRadius: 64, onPress: {
                     showImagePicker = true
                 })
             }

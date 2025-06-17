@@ -16,16 +16,16 @@ struct Palette: View {
                 ForEach(paletteColors, id: \.self) { color in
                     Rectangle()
                         .fill(color)
-                        .frame(height: 60)
+                        .frame(height: savable ? 40 : 60)
                         .overlay(
                             Rectangle()
                                 .stroke(Color.primaryText, lineWidth: 1)
                         )
                 }
             }
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: savable ? 16 : 30))
             .overlay(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: savable ? 16 : 30)
                     .stroke(Color.primaryText)
             )
             if (savable) {

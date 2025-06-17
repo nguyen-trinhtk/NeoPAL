@@ -15,8 +15,8 @@ struct ContentView: View {
                     ColorFixerView()
                 case .saved:
                     SavedView()
-                case .account:
-                    AccountView()
+                case .profile:
+                    ProfileView()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -33,7 +33,7 @@ enum Tab {
     case generator
     case fixer
     case saved
-    case account
+    case profile
 }
 
 struct CustomTabBar: View {
@@ -49,7 +49,7 @@ struct CustomTabBar: View {
             Spacer()
             tabButton(icon: "bookmark", selectedIcon: "bookmark.fill", tab: .saved)
             Spacer()
-            tabButton(icon: "person.crop.circle", selectedIcon: "person.crop.circle.fill", tab: .account)
+            tabButton(icon: "person.crop.circle", selectedIcon: "person.crop.circle.fill", tab: .profile)
         }
         .padding(.horizontal, 32)
         .padding(.top, 16)

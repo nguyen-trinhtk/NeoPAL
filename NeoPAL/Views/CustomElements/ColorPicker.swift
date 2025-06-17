@@ -32,7 +32,7 @@ struct ColorPicker : View {
                 .background(Color.buttonBackground)
                 .cornerRadius(16)
             }
-            HStack (spacing: 30){
+            HStack (spacing: 16){
                 Text("\(Int(red))")
                     .frame(width: 50, height: 40)
                     .cornerRadius(16)
@@ -45,8 +45,12 @@ struct ColorPicker : View {
                 
                 Slider(value: $red, in: 0...255, step: 1)
                     .accentColor(.red)
+                
+                Text("R")
+                    .font(.title2)
+                    .foregroundColor(Color.primaryText)
             }
-            HStack (spacing: 30){
+            HStack (spacing: 16){
                 Text("\(Int(green))")
                     .frame(width: 50, height: 40)
                     .cornerRadius(16)
@@ -59,8 +63,11 @@ struct ColorPicker : View {
                 
                 Slider(value: $green, in: 0...255, step: 1)
                     .accentColor(.green)
+                Text("G")
+                    .font(.title2)
+                    .foregroundColor(Color.primaryText)
             }
-            HStack (spacing: 30){
+            HStack (spacing: 16){
                 Text("\(Int(blue))")
                     .frame(width: 50, height: 40)
                     .cornerRadius(16)
@@ -73,21 +80,17 @@ struct ColorPicker : View {
                 
                 Slider(value: $blue, in: 0...255, step: 1)
                     .accentColor(.blue)
+                Text("B")
+                    .font(.title2)
+                    .foregroundColor(Color.primaryText)
             }
             HStack (spacing: 48){
-                CustomButton(title: "Reset", padding: 16)
-                CustomButton(title: "Generate", padding: 16)
+                CustomButton(title: "Reset", padding: 12, backgroundColor: Color.primaryBackground, textColor: Color.primaryText)
+                CustomButton(title: "Generate", padding: 12)
                 
             }
             .padding(.top, 32)
         }
-        .padding(.top, 32)
-        .overlay(
-            Rectangle()
-                .frame(height: 1)
-                .foregroundColor(Color.primaryText),
-            alignment: .top
-        )
 
     }
 }
