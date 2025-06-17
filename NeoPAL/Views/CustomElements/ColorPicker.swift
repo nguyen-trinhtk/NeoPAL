@@ -79,8 +79,9 @@ struct ColorPicker : View {
                 CustomButton(title: "Generate", padding: 16)
                 
             }
+            .padding(.top, 32)
         }
-        .padding(.vertical, 64)
+        .padding(.top, 32)
         .overlay(
             Rectangle()
                 .frame(height: 1)
