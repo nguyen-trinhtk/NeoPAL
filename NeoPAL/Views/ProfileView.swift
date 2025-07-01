@@ -10,7 +10,7 @@ struct ProfileView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack {
-                BackButton()
+                BackButton(destination: AnyView(ContentView()))
                 Spacer()
                 Text("Your Profile")
                     .font(.title)
@@ -47,7 +47,7 @@ struct ProfileView: View {
             Spacer()
             HStack {
                 CustomButton(title:"View all saved palettes",
-                             padding: 16,backgroundColor: .primaryBackground, textColor: .primaryText, cornerRadius: 64)
+                             padding: 16,backgroundColor: .primaryBackground, textColor: .primaryText, cornerRadius: 64, destination: AnyView(SavedView()))
             }
             .padding(.horizontal, 36)
             Spacer()

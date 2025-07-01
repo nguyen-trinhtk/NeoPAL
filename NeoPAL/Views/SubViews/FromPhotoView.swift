@@ -11,7 +11,7 @@ struct FromPhotoView: View {
     var body: some View {
         VStack {
             HStack {
-                BackButton()
+                BackButton(destination: AnyView(GeneratorView()))
                 Spacer()
                 Text("Upload A Photo")
                     .font(.title2)

@@ -86,8 +86,7 @@ struct ColorPicker : View {
             }
             HStack (spacing: 48){
                 CustomButton(title: "Reset", padding: 12, backgroundColor: Color.primaryBackground, textColor: Color.primaryText)
-                CustomButton(title: "Generate", padding: 12)
-                
+                CustomButton(title: "Generate", padding: 12, destination: AnyView(MultipleResultsView()))
             }
             .padding(.top, 32)
         }

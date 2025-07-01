@@ -4,27 +4,30 @@ struct ContentView: View {
     @State private var selectedTab: Tab = .home
 
     var body: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                switch selectedTab {
-                case .home:
-                    HomeView()
-                case .generator:
-                    GeneratorView()
-                case .fixer:
-                    ColorFixerView()
-                case .saved:
-                    SavedView()
-                case .profile:
-                    ProfileView()
+        NavigationView {
+            VStack(spacing: 0) {
+                ZStack {
+                    switch selectedTab {
+                    case .home:
+                        HomeView()
+                    case .generator:
+                        GeneratorView()
+                    case .fixer:
+                        ColorFixerView()
+                    case .saved:
+                        SavedView()
+                    case .profile:
+                        ProfileView()
+                    }
                 }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.primaryBackground)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.primaryBackground)
 
-            CustomTabBar(selectedTab: $selectedTab)
+                CustomTabBar(selectedTab: $selectedTab)
+            }
+            .edgesIgnoringSafeArea(.bottom)
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .navigationViewStyle(StackNavigationViewStyle()) // Ensures single view on all devices
     }
 }
 

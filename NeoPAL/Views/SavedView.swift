@@ -10,7 +10,7 @@ struct SavedView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack {
-                BackButton()
+                BackButton(destination: AnyView(ContentView()))
                 Spacer()
                 Text("Saved Palettes")
                     .font(.title)

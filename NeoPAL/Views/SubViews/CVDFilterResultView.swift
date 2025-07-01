@@ -10,7 +10,14 @@ import SwiftUI
 struct CVDFilterResultView: View {
     var body: some View {
         VStack(alignment: .center) {
-            VerticalPalette(paletteColors: [.red, .orange, .yellow, .green, .blue])
+            ZStack (alignment: .top){
+                VerticalPalette(paletteColors: [.red, .orange, .yellow, .green, .blue])
+                HStack {
+                    BackButton(destination: AnyView(SingleResultView()))
+                    Spacer()
+                }
+                .padding(.horizontal, 32)
+            }
             Spacer()
             Text("CVD Filter")
                 .font(.title)

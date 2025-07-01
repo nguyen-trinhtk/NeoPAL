@@ -11,7 +11,7 @@ struct SingleResultView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack {
-                BackButton()
+                BackButton(destination: AnyView(FromPhotoView()))
                 Spacer()
                 Text("Palette #20")
                     .font(.title)
@@ -29,8 +29,8 @@ struct SingleResultView: View {
             VerticalPalette(paletteColors: [.red, .orange, .yellow, .green, .blue], addable: true)
             Spacer()
             VStack (spacing: 24){
-                CustomButton(title:"Apply CVD Filter", padding: 12, backgroundColor: .primaryBackground, textColor: .primaryText, cornerRadius: 64)
-                CustomButton(title:"Save to Library", padding: 12, backgroundColor: .primaryBackground, textColor: .primaryText, cornerRadius: 64)
+                CustomButton(title:"Apply CVD Filter", padding: 12, backgroundColor: .primaryBackground, textColor: .primaryText, cornerRadius: 64, destination: AnyView(CVDFilterResultView()))
+                CustomButton(title:"Save to Library", padding: 12, backgroundColor: .primaryBackground, textColor: .primaryText, cornerRadius: 64, destination: AnyView(SavedView()))
                 
             }
             .padding(.horizontal, 32)

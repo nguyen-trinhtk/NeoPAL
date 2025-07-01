@@ -11,7 +11,7 @@ struct GeneratorView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack {
-                BackButton()
+                BackButton(destination: AnyView(ContentView()))
                 Spacer()
                 Text("Generate Palette")
                     .font(.title)
@@ -37,7 +37,8 @@ struct GeneratorView: View {
                     img: Image("photo"),
                     padding: 24,
                     backgroundColor: Color.primaryBackground,
-                    textColor: Color.primaryText
+                    textColor: Color.primaryText,
+                    destination: AnyView(FromColorView())
                 )
 
                 Text("OR")
@@ -47,7 +48,8 @@ struct GeneratorView: View {
                     img: Image("photo"),
                     padding: 24,
                     backgroundColor: Color.primaryBackground,
-                    textColor: Color.primaryText
+                    textColor: Color.primaryText,
+                    destination: AnyView(FromPhotoView())
                 )
             }
             .padding(.horizontal, 64)

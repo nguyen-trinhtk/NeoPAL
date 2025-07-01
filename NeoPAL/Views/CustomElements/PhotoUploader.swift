@@ -47,7 +47,7 @@ struct PhotoUploader: View {
                     CustomButton(subtitle: "Change Photo", padding: 16, backgroundColor: .primaryBackground, textColor: .primaryText, onPress: {
                         showImagePicker = true
                     })
-                    CustomButton(subtitle: "Generate", padding: 16, onPress: uploadImage)
+                    CustomButton(subtitle: "Generate", padding: 16, onPress: uploadImage, destination: AnyView(SingleResultView()))
                 }
             }
             else {

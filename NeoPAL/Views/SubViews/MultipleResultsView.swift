@@ -11,7 +11,7 @@ struct MultipleResultsView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack {
-                BackButton()
+                BackButton(destination: AnyView(FromColorView()))
                 Spacer()
                 Text("Palette #20")
                     .font(.title)
@@ -45,7 +45,7 @@ struct MultipleResultsView: View {
                 .padding(32)
             }
             VStack {
-                CustomButton(title:"Generate Again", padding: 16, cornerRadius: 64)
+                CustomButton(title:"Generate Again", padding: 16, cornerRadius: 64, destination: AnyView(GeneratorView()))
             }
             .padding(.horizontal, 32)
             .padding(.bottom, 32)

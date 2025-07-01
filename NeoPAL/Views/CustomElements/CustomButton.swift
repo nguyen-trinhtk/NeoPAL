@@ -18,41 +18,70 @@ struct CustomButton: View {
     var recolor: Bool = false
     var cornerRadius: CGFloat = 24
     var onPress: () -> Void = {}
+    var destination: AnyView? = nil // New parameter for navigation destination
     
     var body: some View {
-        Button(action: onPress) {
-            VStack {
-                if let img = img {
-                    img
-                        .resizable()
-                        .renderingMode(recolor ? .template : nil)
-                        .scaledToFit()
-                        .frame(height: imgHeight)
-                        .foregroundColor(textColor)
-                }
-                if let title = title {
-                    Text(title)
-                        .font(.title2)
-                        .bold()
-                        .foregroundColor(textColor)
-                }
-                if let subtitle = subtitle {
-                    Text(subtitle)
-                        .foregroundColor(textColor)
-                }
+        // If destination is provided, wrap in NavigationLink
+        if let destination = destination {
+            NavigationLink(destination: destination) {
+                buttonContent
             }
-            .frame(maxWidth: width)
-            .padding(padding)
-            .background(backgroundColor)
-            .cornerRadius(cornerRadius)
-            .overlay(
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color.primaryText)
-            )
+            .buttonStyle(PlainButtonStyle())
+        } else {
+            Button(action: onPress) {
+                buttonContent
+            }
+            .buttonStyle(PlainButtonStyle())
         }
-        .buttonStyle(PlainButtonStyle())
+    }
+    
+    // Extract button content to avoid duplication
+    private var buttonContent: some View {
+        VStack {
+            if let img = img {
+                img
+                    .resizable()
+                    .renderingMode(recolor ? .template : nil)
+                    .scaledToFit()
+                    .frame(height: imgHeight)
+                    .foregroundColor(textColor)
+            }
+            if let title = title {
+                Text(title)
+                    .font(.title2)
+                    .bold()
+                    .foregroundColor(textColor)
+            }
+            if let subtitle = subtitle {
+                Text(subtitle)
+                    .foregroundColor(textColor)
+            }
+        }
+        .frame(maxWidth: width)
+        .padding(padding)
+        .background(backgroundColor)
+        .cornerRadius(cornerRadius)
+        .overlay(
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .stroke(Color.primaryText)
+        )
     }
 }
 #Preview {
-    CustomButton(img: Image("photo"), onPress: {print("Button tapped!")})
+    NavigationView {
+        VStack {
+            CustomButton(
+                title: "Regular Button",
+                img: Image("photo")
+            ) {
+                print("Button tapped!")
+            }
+            
+            CustomButton(
+                title: "Navigation Button",
+                img: Image("photo"),
+                destination: AnyView(Text("Destination View"))
+            )
+        }
+    }
 }

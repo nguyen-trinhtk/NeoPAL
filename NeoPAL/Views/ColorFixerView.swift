@@ -14,7 +14,7 @@ struct ColorFixerView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .center) {
                 HStack {
-                    BackButton()
+                    BackButton(destination: AnyView(ContentView()))
                     Spacer()
                     Text("AR Color Fixer")
                         .font(.title)

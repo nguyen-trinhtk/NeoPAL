@@ -11,13 +11,12 @@ struct FromColorView: View {
         VStack(alignment: .center) {
             VStack {
                 HStack {
-                    BackButton()
+                    BackButton(destination: AnyView(GeneratorView()))
                     Spacer()
                     Text("Pick A Color")
                         .font(.title2)
                         .bold()
                         .foregroundColor(Color.primaryText)
-                    
                     Spacer()
                     Color.clear
                         .frame(width: 32, height: 1)
